@@ -1,323 +1,591 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
 <title>Mo and the Lantern Egg — A Lantern Keeper Story</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --night-1:#1a1f3d; --night-2:#2b3468;
-  --moss-1:#5b7d4a; --moss-2:#3f5c38;
-  --gold:#ffc247; --gold-seam:#ffdd87;
-  --cream:#fff6e6;
+  --night:#1a1f3d; --night2:#2b3468; --moss:#5b7d4a; --moss2:#3f5c38;
+  --gold:#ffc247; --seam:#ffdd87; --cream:#fff8ec; --ink:#1a1f3d;
 }
-*{margin:0;padding:0;box-sizing:border-box}
+*{box-sizing:border-box;margin:0;padding:0}
 body{
-  background:linear-gradient(180deg,var(--night-1) 0%,var(--night-2) 100%);
-  color:var(--cream);
-  font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;
-  line-height:1.7;
-  -webkit-font-smoothing:antialiased;
+  background:linear-gradient(180deg,var(--night) 0%,var(--night2) 55%,var(--night) 100%);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  color:var(--cream);line-height:1.65;-webkit-font-smoothing:antialiased;
 }
-.wrap{max-width:1100px;margin:0 auto;padding:0 1.25rem}
+.wrap{max-width:820px;margin:0 auto;padding:0 20px}
 
 /* ---------- HERO ---------- */
-.hero{padding:4rem 0 3rem;text-align:center;position:relative;overflow:hidden}
-.hero-bird{position:absolute;border-radius:50%;opacity:.9;pointer-events:none}
-.hero .series-badge{
-  display:inline-block;font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;
-  border:1px solid var(--gold);color:var(--gold);border-radius:999px;padding:.5rem 1.25rem;margin-bottom:1.75rem;
+.hero{padding:72px 0 56px;text-align:center;position:relative}
+.hero-stars{position:absolute;top:0;left:0;right:0;height:100%;overflow:hidden;pointer-events:none;z-index:0}
+.hero-star{position:absolute;width:3px;height:3px;border-radius:50%;background:var(--seam);opacity:.7;animation:twinkle 3s ease-in-out infinite}
+@keyframes twinkle{0%,100%{opacity:.25}50%{opacity:.85}}
+.hero-inner{position:relative;z-index:1}
+.badge{
+  display:inline-block;font-size:11px;letter-spacing:.22em;font-weight:600;
+  color:var(--seam);border:1px solid rgba(255,221,135,.35);border-radius:999px;
+  padding:8px 22px;margin-bottom:28px;background:rgba(255,194,71,.06)
 }
-.hero h1{
-  font-size:clamp(2rem,6vw,3.4rem);font-weight:800;letter-spacing:-.01em;line-height:1.15;
-  color:var(--cream);margin-bottom:1rem;
+h1{
+  font-size:clamp(34px,6vw,58px);font-weight:800;line-height:1.12;letter-spacing:-.02em;
+  color:var(--cream);margin-bottom:18px
 }
-.hero h1 .glow-word{color:var(--gold);text-shadow:0 0 24px rgba(255,194,71,.45)}
-.hero .subtitle{font-size:1.1rem;color:#c9c2e8;max-width:34rem;margin:0 auto;font-style:italic}
-.hero-egg{
-  width:120px;height:96px;margin:2.5rem auto 0;position:relative;
-  background:linear-gradient(160deg,#8a94c9 0%,var(--night-2) 70%);
-  border-radius:50% 50% 48% 48%/62% 62% 40% 40%;
-  box-shadow:0 0 40px rgba(255,194,71,.25),inset -8px -10px 24px rgba(0,0,0,.4);
-}
-.hero-egg .seam{
-  position:absolute;left:50%;top:18%;width:3px;height:64%;
-  background:linear-gradient(180deg,transparent,var(--gold-seam) 30%,var(--gold) 70%,transparent);
-  border-radius:3px;transform:translateX(-50%);
-  animation:pulse 3.5s ease-in-out infinite;
-}
-@keyframes pulse{0%,100%{opacity:.7}50%{opacity:1}}
+h1 .gold{color:var(--gold)}
+.subtitle{font-size:clamp(15px,2.5vw,19px);color:rgba(255,248,236,.78);max-width:480px;margin:0 auto;font-style:italic}
+.hero-lantern{margin:36px auto 0;display:block}
 
-/* ---------- STORYBOOK PAGE CARD ---------- */
-.page{background:rgba(43,52,104,.35);border:1px solid rgba(255,221,135,.18);border-radius:28px;padding:2.5rem;margin:2.5rem 0;position:relative}
+/* ---------- READ-ALONG BAR ---------- */
+.readalong{padding:0 0 40px;text-align:center}
+.read-btn{
+  background:var(--gold);color:var(--night);border:none;border-radius:999px;
+  font-family:inherit;font-size:14px;font-weight:700;letter-spacing:.04em;
+  padding:14px 34px;cursor:pointer;transition:transform .15s ease, box-shadow .15s ease;
+  box-shadow:0 4px 18px rgba(255,194,71,.28)
+}
+.read-btn:hover{transform:translateY(-2px);box-shadow:0 8px 26px rgba(255,194,71,.4)}
+.read-btn:active{transform:translateY(0)}
+.read-btn .stop-label{display:none}
+body.reading .read-btn .start-label{display:none}
+body.reading .read-btn .stop-label{display:inline}
+.read-hint{margin-top:14px;font-size:12.5px;color:rgba(255,248,236,.55)}
+.line-hl{border-radius:6px;padding:1px 6px;margin:0 -6px;transition:background .35s ease, box-shadow .35s ease}
+.line-hl.active{background:rgba(255,194,71,.18);box-shadow:0 0 0 2px rgba(255,194,71,.28)}
+
+/* ---------- STORYBOOK PAGES ---------- */
+.page{
+  background:linear-gradient(160deg,#242b54 0%,#1e2447 100%);
+  border:1px solid rgba(255,221,135,.14);border-radius:28px;
+  padding:52px 44px 44px;margin-bottom:40px;position:relative;overflow:hidden;
+  box-shadow:0 10px 40px rgba(0,0,0,.35)
+}
 .page-num{
-  display:inline-flex;align-items:center;justify-content:center;
-  background:var(--moss-2);color:var(--cream);font-size:.72rem;letter-spacing:.18em;
-  border-radius:999px;padding:.45rem 1.1rem;margin-bottom:1.5rem;
+  position:absolute;top:20px;left:24px;background:var(--moss);color:var(--cream);
+  font-size:11px;font-weight:700;letter-spacing:.18em;border-radius:999px;
+  padding:6px 18px;z-index:2
 }
-.page-inner{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:center}
-.page h2{font-size:1.35rem;font-weight:700;color:var(--gold-seam);margin-bottom:1rem;letter-spacing:.02em}
-.page p{margin-bottom:1rem;font-size:1.06rem}
-.page p:last-of-type{margin-bottom:0}
+.page-art{margin:0 0 32px;border-radius:20px;overflow:hidden;background:var(--night)}
+.page-art svg{display:block;width:100%;height:auto}
+.story-text{font-size:clamp(16px,2.2vw,19px);color:rgba(255,248,236,.92)}
+.story-text p{margin-bottom:14px}
 .refrain{
-  font-style:italic;color:var(--gold);margin-top:1.5rem;padding:.85rem 1.1rem;
-  border-left:3px solid var(--gold);border-radius:0 12px 12px 0;
-  background:rgba(255,194,71,.08);font-size:1rem;
+  margin-top:26px;padding-top:22px;border-top:1px dashed rgba(255,221,135,.25);
+  color:var(--gold);font-style:italic;font-size:clamp(15px,2vw,18px);
+  letter-spacing:.02em;text-align:center
 }
-
-/* ---------- SCENE ILLUSTRATIONS (pure CSS) ---------- */
-.scene{
-  border-radius:20px;overflow:hidden;aspect-ratio:4/3;position:relative;
-  background:linear-gradient(180deg,var(--night-1) 0%,var(--night-2) 100%);
-}
-.star{position:absolute;width:3px;height:3px;border-radius:50%;background:var(--cream);opacity:.7}
-.firefly{position:absolute;width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 12px var(--gold)}
-.moss-mound{
-  position:absolute;bottom:0;left:-10%;width:120%;height:32%;
-  background:var(--moss-2);border-radius:60% 50% 0 0/100% 80% 0 0;
-}
-.moss-nest{
-  position:absolute;bottom:14%;left:50%;transform:translateX(-50%);
-  width:150px;height:52px;background:var(--moss-1);border-radius:999px;
-}
-.egg{
-  position:absolute;bottom:22%;left:50%;transform:translateX(-50%);
-  width:52px;height:64px;
-  background:linear-gradient(160deg,#9aa3d4 0%,var(--night-2) 75%);
-  border-radius:50% 50% 46% 46%/62% 62% 40% 40%;
-  box-shadow:0 0 20px rgba(255,194,71,.3);
-}
-.seam-line{position:absolute;background:linear-gradient(180deg,transparent,var(--gold-seam),transparent);border-radius:2px}
-.pine-roots{position:absolute;bottom:26%;width:80px;height:70px;border-top:14px solid var(--moss-2);border-left:8px solid var(--moss-2);border-radius:50% 50% 0 0}
-.moth{position:absolute;width:14px;height:10px;border-radius:50% 50% 40% 40%;background:var(--cream);opacity:.8}
-.owl{position:absolute;width:56px;height:70px;background:var(--moss-2);border-radius:50% 50% 45% 45%;opacity:.9}
-.owl::before,.owl::after{content:'';position:absolute;top:14px;width:14px;height:14px;border-radius:50%;background:var(--night-1)}
-.owl::before{left:12px}.owl::after{right:12px}
-.kole{position:absolute;bottom:22%;right:14%;width:70px;height:130px;background:var(--moss-2);border-radius:34px 34px 22px 22px}
-.kole::before{content:'';position:absolute;top:-26px;left:50%;transform:translateX(-50%);width:44px;height:44px;border-radius:50%;background:var(--night-2)}
-.lantern-staff{position:absolute;bottom:0;right:8%;width:8px;height:170px;background:var(--night-1);border-radius:4px}
-.lantern-staff::before{content:'';position:absolute;top:0;left:-16px;width:40px;height:34px;background:var(--gold);border-radius:10px;box-shadow:0 0 24px var(--gold);opacity:.85}
+.refrain::before{content:'♪ ';opacity:.7}
 
 /* ---------- FOOTER ---------- */
-.footer{text-align:center;padding:4rem 0 3rem;border-top:1px solid rgba(255,221,135,.12)}
-.footer .lane{color:#c9c2e8;font-size:.95rem;letter-spacing:.05em}
-.footer .teaser{color:var(--gold);font-style:italic;margin-top:1rem;font-size:1.05rem}
+footer{padding:64px 0 48px;text-align:center;border-top:1px solid rgba(255,221,135,.12);margin-top:24px}
+.footer-line{font-size:12px;letter-spacing:.16em;color:rgba(255,248,236,.6);font-weight:600}
+.teaser{margin-top:20px;font-size:16px;color:var(--seam);font-style:italic}
 
 /* ---------- RESPONSIVE ---------- */
-@media (max-width:760px){
-  .page-inner{grid-template-columns:1fr}
-  .page{padding:1.75rem;margin:1.5rem 0}
-  .hero{padding:3rem 0 2rem}
-  .hero-egg{width:90px;height:72px}
+@media(max-width:640px){
+  .hero{padding:52px 0 40px}
+  .page{padding:44px 22px 34px;border-radius:22px}
+  .page-num{top:16px;left:18px}
+  .read-btn{padding:12px 26px;font-size:13px}
+  .refrain{font-size:15px}
 }
 </style>
 </head>
 <body>
 
+<!-- ===================== HERO ===================== -->
 <header class="hero">
-  <div class="wrap">
-    <div class="series-badge">THE LANTERN KEEPER &middot; BOOK ONE</div>
-    <h1>Mo and the <span class="glow-word">Lantern Egg</span></h1>
+  <div class="hero-stars" aria-hidden="true">
+    <span class="hero-star" style="left:8%;top:18%;animation-delay:0s"></span>
+    <span class="hero-star" style="left:20%;top:9%;animation-delay:.6s"></span>
+    <span class="hero-star" style="left:33%;top:22%;animation-delay:1.2s"></span>
+    <span class="hero-star" style="left:47%;top:6%;animation-delay:.3s"></span>
+    <span class="hero-star" style="left:62%;top:17%;animation-delay:1.5s"></span>
+    <span class="hero-star" style="left:76%;top:10%;animation-delay:.9s"></span>
+    <span class="hero-star" style="left:89%;top:20%;animation-delay:2s"></span>
+    <span class="hero-star" style="left:14%;top:34%;animation-delay:1.8s"></span>
+    <span class="hero-star" style="left:84%;top:36%;animation-delay:.4s"></span>
+  </div>
+  <div class="wrap hero-inner">
+    <span class="badge">THE LANTERN KEEPER · BOOK ONE</span>
+    <h1>Mo and the <span class="gold">Lantern Egg</span></h1>
     <p class="subtitle">A parable about the crack that is not breaking</p>
-    <div class="hero-egg"><div class="seam"></div></div>
+    <svg class="hero-lantern" width="120" height="120" viewBox="0 0 120 120" aria-hidden="true">
+      <defs>
+        <radialGradient id="heroGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#ffc247" stop-opacity=".55"/>
+          <stop offset="100%" stop-color="#ffc247" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <circle cx="60" cy="62" r="52" fill="url(#heroGlow)"/>
+      <ellipse cx="60" cy="64" rx="26" ry="34" fill="#3a4266"/>
+      <ellipse cx="60" cy="64" rx="26" ry="34" fill="none" stroke="#4c5480" stroke-width="2"/>
+      <path d="M60 34 Q64 56 60 92" stroke="#ffc247" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <path d="M60 46 Q56 62 60 80" stroke="#ffdd87" stroke-width="1.5" fill="none" stroke-linecap="round" opacity=".8"/>
+      <ellipse cx="60" cy="30" rx="12" ry="5" fill="#5b7d4a"/>
+    </svg>
   </div>
 </header>
 
+<!-- ===================== READ-ALONG ===================== -->
+<section class="readalong wrap">
+  <button class="read-btn" id="readBtn" aria-pressed="false">
+    <span class="start-label">📖&nbsp; Read it aloud</span>
+    <span class="stop-label">⏸&nbsp; Stop read-along</span>
+  </button>
+  <p class="read-hint">Watch the story light up, line by line — read along with it.</p>
+</section>
+
 <main class="wrap">
 
-  <section class="page" id="page-1">
-    <div class="page-num">PAGE 1</div>
-    <div class="page-inner">
-      <div class="page-text">
-        <h2>The Finding</h2>
-        <p>Mo found it under the roots of the old pine: an egg made of stone, humming like a sleepy song.</p>
-        <p>It was warm. It glowed, just a little, at one thin crack.</p>
-        <div class="refrain">Mo, Mo, small and slow. Wait with the egg. And watch it glow.</div>
-      </div>
-      <div class="scene" data-scene>
-        <div class="star" style="top:12%;left:18%"></div>
-        <div class="star" style="top:8%;left:70%"></div>
-        <div class="star" style="top:20%;left:85%"></div>
-        <div class="star" style="top:15%;left:45%"></div>
-        <div class="firefly" style="top:40%;left:22%"></div>
-        <div class="firefly" style="top:35%;left:30%"></div>
-        <div class="firefly" style="top:45%;left:75%"></div>
-        <div class="moss-mound"></div>
-        <div class="pine-roots" style="left:8%"></div>
-        <div class="pine-roots" style="left:80%;transform:scaleX(-1)"></div>
-        <div class="moss-nest"></div>
-        <div class="egg"><div class="seam-line" style="left:24px;top:10px;width:3px;height:44px;transform:rotate(6deg)"></div></div>
-      </div>
-    </div>
-  </section>
+<!-- ===================== PAGE 1 ===================== -->
+<section class="page" data-page="1">
+  <span class="page-num">PAGE 1 · THE FINDING</span>
+  <div class="page-art" aria-hidden="true">
+  <svg viewBox="0 0 720 400" role="img" aria-label="Mo kneels at a moss nest under giant pine roots, a stone egg with one thin gold seam glowing among fireflies.">
+    <defs>
+      <radialGradient id="p1glow" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#ffdd87" stop-opacity=".8"/>
+        <stop offset="60%" stop-color="#ffc247" stop-opacity=".3"/>
+        <stop offset="100%" stop-color="#ffc247" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="p1firefly" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#ffdd87"/>
+        <stop offset="100%" stop-color="#ffc247" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <rect width="720" height="400" fill="#1a1f3d"/>
+    <circle cx="90" cy="70" r="2.5" fill="#ffdd87" opacity=".7"/>
+    <circle cx="180" cy="45" r="2" fill="#ffdd87" opacity=".5"/>
+    <circle cx="300" cy="80" r="2.5" fill="#ffdd87" opacity=".6"/>
+    <circle cx="460" cy="55" r="2" fill="#ffdd87" opacity=".5"/>
+    <circle cx="600" cy="75" r="2.5" fill="#ffdd87" opacity=".7"/>
+    <circle cx="670" cy="40" r="2" fill="#ffdd87" opacity=".4"/>
+    <!-- giant pine roots -->
+    <path d="M40 400 Q60 300 130 280 Q100 260 90 230 Q140 240 160 280 Q120 300 110 340 Q160 330 200 350" fill="#2f2338" stroke="#3a2d45" stroke-width="3"/>
+    <path d="M240 400 Q230 320 280 300 Q260 270 255 245 Q300 265 305 305 Q285 330 280 360" fill="#2f2338" stroke="#3a2d45" stroke-width="3"/>
+    <path d="M340 400 Q360 330 430 320 Q470 300 480 260 Q500 300 480 340 Q440 360 420 400" fill="#2f2338" stroke="#3a2d45" stroke-width="3"/>
+    <path d="M560 400 Q540 330 590 310 Q570 280 575 250 Q620 275 615 315 Q595 345 600 400" fill="#2f2338" stroke="#3a2d45" stroke-width="3"/>
+    <!-- pine trunk hint -->
+    <path d="M480 260 Q470 160 480 60 L520 60 Q515 170 520 265 Z" fill="#261c30" stroke="#352a44" stroke-width="3"/>
+    <!-- ground -->
+    <rect x="0" y="380" width="720" height="20" fill="#243020"/>
+    <!-- moss nest -->
+    <ellipse cx="270" cy="368" rx="110" ry="26" fill="#3f5c38"/>
+    <ellipse cx="270" cy="364" rx="100" ry="20" fill="#5b7d4a"/>
+    <!-- glow -->
+    <circle cx="270" cy="350" r="75" fill="url(#p1glow)"/>
+    <!-- stone egg -->
+    <ellipse cx="270" cy="352" rx="34" ry="44" fill="#4a4f66"/>
+    <ellipse cx="270" cy="352" rx="34" ry="44" fill="none" stroke="#5c6180" stroke-width="2.5"/>
+    <path d="M262 310 Q258 340 266 392" stroke="#ffc247" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <path d="M274 318 Q278 348 272 384" stroke="#ffdd87" stroke-width="2" fill="none" stroke-linecap="round" opacity=".85"/>
+    <!-- fireflies like music notes of light -->
+    <g>
+      <circle cx="150" cy="200" r="9" fill="url(#p1firefly)"/>
+      <circle cx="150" cy="200" r="3" fill="#ffdd87"/>
+      <path d="M165 193 h14 M165 200 h10" stroke="#ffdd87" stroke-width="2" stroke-linecap="round" opacity=".6"/>
+    </g>
+    <g>
+      <circle cx="420" cy="150" r="10" fill="url(#p1firefly)"/>
+      <circle cx="420" cy="150" r="3.5" fill="#ffdd87"/>
+      <path d="M436 142 h16 M436 149 h12" stroke="#ffdd87" stroke-width="2" stroke-linecap="round" opacity=".6"/>
+    </g>
+    <g>
+      <circle cx="560" cy="220" r="8" fill="url(#p1firefly)"/>
+      <circle cx="560" cy="220" r="3" fill="#ffdd87"/>
+      <path d="M573 214 h12 M573 220 h9" stroke="#ffdd87" stroke-width="2" stroke-linecap="round" opacity=".6"/>
+    </g>
+    <g>
+      <circle cx="340" cy="100" r="8" fill="url(#p1firefly)"/>
+      <circle cx="340" cy="100" r="3" fill="#ffdd87"/>
+    </g>
+    <!-- Mo: small round child kneeling, oversized lantern-knit hat -->
+    <g>
+      <circle cx="120" cy="300" r="52" fill="#e8b58a"/>
+      <!-- hat: oversized lantern-knit -->
+      <path d="M64 282 Q64 224 120 224 Q176 224 176 282 Q176 262 120 262 Q64 262 64 282 Z" fill="#5b7d4a"/>
+      <path d="M64 282 Q120 258 176 282" stroke="#3f5c38" stroke-width="6" fill="none"/>
+      <path d="M78 262 Q120 240 162 262" stroke="#3f5c38" stroke-width="4" fill="none" opacity=".7"/>
+      <circle cx="120" cy="228" r="8" fill="#ffc247"/>
+      <circle cx="120" cy="228" r="14" fill="none" stroke="#ffc247" stroke-width="1.5" opacity=".5"/>
+      <!-- face -->
+      <circle cx="104" cy="300" r="5" fill="#1a1f3d"/>
+      <circle cx="136" cy="300" r="5" fill="#1a1f3d"/>
+      <path d="M110 318 Q120 326 130 318" stroke="#1a1f3d" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <!-- body kneeling -->
+      <ellipse cx="128" cy="372" rx="50" ry="34" fill="#5b7d4a"/>
+      <!-- arm reaching to nest -->
+      <path d="M164 356 Q210 360 234 352" stroke="#e8b58a" stroke-width="14" fill="none" stroke-linecap="round"/>
+    </g>
+  </svg>
+  </div>
+  <div class="story-text">
+    <p><span class="line-hl">Mo found it under the roots of the old pine: an egg made of stone, humming like a sleepy song.</span></p>
+    <p><span class="line-hl">It was warm. It glowed, just a little, at one thin crack.</span></p>
+    <p class="refrain"><span class="line-hl">Mo, Mo, small and slow. Wait with the egg. And watch it glow.</span></p>
+  </div>
+</section>
 
-  <section class="page" id="page-2">
-    <div class="page-num">PAGE 2</div>
-    <div class="page-inner">
-      <div class="page-text">
-        <h2>The Question</h2>
-        <p>&ldquo;Will you sing for me?&rdquo; Mo whispered.</p>
-        <p>The egg only hummed. So Mo held it close, every day, and hummed back.</p>
-        <div class="refrain">Mo, Mo, small and slow. Wait with the egg. And watch it glow.</div>
-      </div>
-      <div class="scene" data-scene>
-        <div class="star" style="top:10%;left:25%"></div>
-        <div class="star" style="top:18%;left:80%"></div>
-        <div class="star" style="top:6%;left:55%"></div>
-        <div class="moth" style="top:35%;left:15%"></div>
-        <div class="moth" style="top:28%;left:78%"></div>
-        <div class="owl" style="top:25%;left:82%"></div>
-        <div class="moss-mound"></div>
-        <div class="moss-nest"></div>
-        <div class="egg"><div class="seam-line" style="left:24px;top:10px;width:3px;height:44px;transform:rotate(6deg)"></div></div>
-        <div class="seam-line" style="bottom:30%;left:36%;width:70px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);border-radius:2px"></div>
-      </div>
-    </div>
-  </section>
+<!-- ===================== PAGE 2 ===================== -->
+<section class="page" data-page="2">
+  <span class="page-num">PAGE 2 · THE QUESTION</span>
+  <div class="page-art" aria-hidden="true">
+  <svg viewBox="0 0 720 400" role="img" aria-label="Mo sits cross-legged humming to the egg on his lap, a glowing thread of breath connecting them, while an owl and moths watch cozily from the dark.">
+    <defs>
+      <radialGradient id="p2glow" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#ffdd87" stop-opacity=".7"/>
+        <stop offset="100%" stop-color="#ffc247" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <rect width="720" height="400" fill="#1a1f3d"/>
+    <circle cx="110" cy="60" r="2.5" fill="#ffdd87" opacity=".7"/>
+    <circle cx="240" cy="40" r="2" fill="#ffdd87" opacity=".5"/>
+    <circle cx="380" cy="65" r="2.5" fill="#ffdd87" opacity=".6"/>
+    <circle cx="520" cy="45" r="2" fill="#ffdd87" opacity=".5"/>
+    <circle cx="640" cy="70" r="2.5" fill="#ffdd87" opacity=".7"/>
+    <!-- soft dark hills (inhabited, cozy) -->
+    <path d="M0 340 Q180 290 360 335 Q540 290 720 340 L720 400 L0 400 Z" fill="#243020"/>
+    <!-- friendly owl watching from the dark -->
+    <g>
+      <ellipse cx="600" cy="150" rx="30" ry="38" fill="#5b7d4a"/>
+      <circle cx="590" cy="138" r="9" fill="#fff8ec"/>
+      <circle cx="612" cy="138" r="9" fill="#fff8ec"/>
+      <circle cx="590" cy="139" r="4" fill="#1a1f3d"/>
+      <circle cx="612" cy="139" r="4" fill="#1a1f3d"/>
+      <path d="M599 146 L601 154 L604 146 Z" fill="#ffc247"/>
+      <path d="M578 115 L588 128 L572 126 Z" fill="#5b7d4a"/>
+      <path d="M624 115 L614 128 L630 126 Z" fill="#5b7d4a"/>
+    </g>
+    <!-- moths -->
+    <g opacity=".85">
+      <ellipse cx="150" cy="120" rx="7" ry="10" fill="#c9c3ae"/>
+      <ellipse cx="140" cy="115" rx="8" ry="6" fill="#c9c3ae" transform="rotate(-25 140 115)"/>
+      <ellipse cx="160" cy="115" rx="8" ry="6" fill="#c9c3ae" transform="rotate(25 160 115)"/>
+    </g>
+    <g opacity=".7">
+      <ellipse cx="320" cy="80" rx="6" ry="9" fill="#c9c3ae"/>
+      <ellipse cx="311" cy="75" rx="7" ry="5" fill="#c9c3ae" transform="rotate(-25 311 75)"/>
+      <ellipse cx="329" cy="75" rx="7" ry="5" fill="#c9c3ae" transform="rotate(25 329 75)"/>
+    </g>
+    <!-- Mo cross-legged -->
+    <g>
+      <circle cx="360" cy="200" r="46" fill="#e8b58a"/>
+      <path d="M314 184 Q314 132 360 132 Q406 132 406 184 Q406 166 360 166 Q314 166 314 184 Z" fill="#5b7d4a"/>
+      <path d="M314 184 Q360 162 406 184" stroke="#3f5c38" stroke-width="5" fill="none"/>
+      <circle cx="360" cy="136" r="7" fill="#ffc247"/>
+      <path d="M344 196 Q360 210 376 196" stroke="#1a1f3d" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+      <path d="M334 184 Q342 180 348 184" stroke="#1a1f3d" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path d="M372 184 Q378 180 386 184" stroke="#1a1f3d" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <ellipse cx="360" cy="270" rx="62" ry="34" fill="#5b7d4a"/>
+      <ellipse cx="322" cy="296" rx="34" ry="13" fill="#5b7d4a"/>
+      <ellipse cx="398" cy="296" rx="34" ry="13" fill="#5b7d4a"/>
+      <!-- humming: eyes closed, mouth open small -->
+      <path d="M336 186 Q344 190 350 186" stroke="#1a1f3d" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+      <path d="M370 186 Q376 190 384 186" stroke="#1a1f3d" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+      <circle cx="360" cy="206" r="6" fill="#1a1f3d"/>
+      <!-- breath-line hum: glowing thread to egg -->
+      <path d="M360 250 Q320 280 300 300" stroke="#ffdd87" stroke-width="3" fill="none" stroke-linecap="round" stroke-dasharray="2 10"/>
+      <circle cx="296" cy="304" r="4" fill="#ffdd87"/>
+      <path d="M360 250 Q400 280 420 300" stroke="#ffdd87" stroke-width="3" fill="none" stroke-linecap="round" stroke-dasharray="2 10"/>
+      <circle cx="424" cy="304" r="4" fill="#ffdd87"/>
+    </g>
+    <!-- nest with egg on lap -->
+    <ellipse cx="360" cy="330" rx="70" ry="18" fill="#3f5c38"/>
+    <circle cx="360" cy="316" r="55" fill="url(#p2glow)"/>
+    <ellipse cx="360" cy="318" rx="26" ry="34" fill="#4a4f66" stroke="#5c6180" stroke-width="2"/>
+    <path d="M354 286 Q352 312 357 350" stroke="#ffc247" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+    <path d="M366 292 Q368 318 364 344" stroke="#ffdd87" stroke-width="1.8" fill="none" stroke-linecap="round" opacity=".8"/>
+  </svg>
+  </div>
+  <div class="story-text">
+    <p><span class="line-hl">"Will you sing for me?" Mo whispered.</span></p>
+    <p><span class="line-hl">The egg only hummed. So Mo held it close, every day, and hummed back.</span></p>
+    <p class="refrain"><span class="line-hl">Mo, Mo, small and slow. Wait with the egg. And watch it glow.</span></p>
+  </div>
+</section>
 
-  <section class="page" id="page-3">
-    <div class="page-num">PAGE 3</div>
-    <div class="page-inner">
-      <div class="page-text">
-        <h2>The Worry</h2>
-        <p>One night, the crack began to spread.</p>
-        <p>&ldquo;Oh no,&rdquo; Mo said. &ldquo;Did I break it?&rdquo;</p>
-        <p>He held it tighter. The egg shivered.</p>
-        <div class="refrain">Mo, Mo, small and slow. Wait with the egg. And watch it glow.</div>
-      </div>
-      <div class="scene" data-scene>
-        <div class="star" style="top:14%;left:20%"></div>
-        <div class="star" style="top:10%;left:75%"></div>
-        <div class="star" style="top:22%;left:90%"></div>
-        <div class="moss-mound"></div>
-        <div class="moss-nest" style="width:180px;height:60px"></div>
-        <div class="egg" style="bottom:20%;width:60px;height:74px">
-          <div class="seam-line" style="left:26px;top:8px;width:3px;height:58px;transform:rotate(8deg);box-shadow:0 0 6px var(--gold)"></div>
-          <div class="seam-line" style="left:30px;top:30px;width:22px;height:3px;transform:rotate(40deg)"></div>
-          <div class="seam-line" style="left:12px;top:38px;width:16px;height:2px;transform:rotate(-35deg)"></div>
-        </div>
-      </div>
-    </div>
-  </section>
+<!-- ===================== PAGE 3 ===================== -->
+<section class="page" data-page="3">
+  <span class="page-num">PAGE 3 · THE WORRY</span>
+  <div class="page-art" aria-hidden="true">
+  <svg viewBox="0 0 720 400" role="img" aria-label="Close-up of Mo's worried big eyes above hands wrapped too tight around the egg, the gold seam flickering and dimming, the dark around soft and not scary.">
+    <defs>
+      <radialGradient id="p3glow" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#ffdd87" stop-opacity=".45"/>
+        <stop offset="100%" stop-color="#ffc247" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <rect width="720" height="400" fill="#1a1f3d"/>
+    <circle cx="70" cy="55" r="2" fill="#ffdd87" opacity=".5"/>
+    <circle cx="650" cy="45" r="2" fill="#ffdd87" opacity=".5"/>
+    <circle cx="140" cy="90" r="2" fill="#ffdd87" opacity=".4"/>
+    <circle cx="580" cy="85" r="2" fill="#ffdd87" opacity=".4"/>
+    <!-- big worried eyes -->
+    <g>
+      <ellipse cx="270" cy="105" rx="34" ry="40" fill="#fff8ec"/>
+      <ellipse cx="450" cy="105" rx="34" ry="40" fill="#fff8ec"/>
+      <circle cx="272" cy="110" r="13" fill="#1a1f3d"/>
+      <circle cx="448" cy="110" r="13" fill="#1a1f3d"/>
+      <circle cx="276" cy="104" r="4.5" fill="#fff8ec"/>
+      <circle cx="452" cy="104" r="4.5" fill="#fff8ec"/>
+      <path d="M238 72 Q270 58 302 74" stroke="#e8b58a" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <path d="M418 74 Q450 58 482 72" stroke="#e8b58a" stroke-width="6" fill="none" stroke-linecap="round"/>
+    </g>
+    <!-- soft mouth, worried -->
+    <path d="M330 168 Q360 156 390 168" stroke="#e8b58a" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <!-- hands wrapping too tight -->
+    <g>
+      <circle cx="300" cy="290" r="58" fill="url(#p3glow)"/>
+      <ellipse cx="360" cy="288" rx="34" ry="46" fill="#4a4f66" stroke="#5c6180" stroke-width="2"/>
+      <path d="M352 244 Q346 280 356 332" stroke="#ffc247" stroke-width="3.5" fill="none" stroke-linecap="round" opacity=".85"/>
+      <path d="M368 250 Q372 286 366 326" stroke="#ffdd87" stroke-width="2" fill="none" stroke-linecap="round" opacity=".6"/>
+      <!-- fingers wrapped over the egg -->
+      <path d="M320 250 Q344 232 372 240 Q392 246 396 264" stroke="#e8b58a" stroke-width="16" fill="none" stroke-linecap="round"/>
+      <path d="M318 272 Q342 256 366 262 Q386 268 390 284" stroke="#e8b58a" stroke-width="16" fill="none" stroke-linecap="round"/>
+      <path d="M320 296 Q342 282 364 288 Q384 294 388 308" stroke="#e8b58a" stroke-width="15" fill="none" stroke-linecap="round"/>
+      <path d="M324 318 Q346 306 366 312 Q382 316 386 328" stroke="#e8b58a" stroke-width="13" fill="none" stroke-linecap="round"/>
+    </g>
+    <!-- soft dark: gentle round shadow-hills, not scary -->
+    <path d="M0 380 Q180 345 360 372 Q540 345 720 380 L720 400 L0 400 Z" fill="#243020"/>
+    <ellipse cx="80" cy="360" rx="46" ry="16" fill="#3f5c38"/>
+    <ellipse cx="640" cy="362" rx="46" ry="16" fill="#3f5c38"/>
+  </svg>
+  </div>
+  <div class="story-text">
+    <p><span class="line-hl">One night, the crack began to spread.</span></p>
+    <p><span class="line-hl">"Oh no," Mo said. "Did I break it?"</span></p>
+    <p><span class="line-hl">He held it tighter. The egg shivered.</span></p>
+    <p class="refrain"><span class="line-hl">Mo, Mo, small and slow. Wait with the egg. And watch it glow.</span></p>
+  </div>
+</section>
 
-  <section class="page" id="page-4">
-    <div class="page-num">PAGE 4</div>
-    <div class="page-inner">
-      <div class="page-text">
-        <h2>The Keeper</h2>
-        <p>Kole the Keeper smiled. &ldquo;Eggs are not squeezed open, little one. They are kept warm.&rdquo;</p>
-        <p>So Mo loosened his hands. He hummed HIS hum. Pip the firefly sat on the shell.</p>
-        <p>&ldquo;The crack was not breaking,&rdquo; Kole said. &ldquo;The crack was becoming.&rdquo;</p>
-        <div class="refrain">Mo, Mo, small and slow. Wait with the egg. And watch it glow.</div>
-      </div>
-      <div class="scene" data-scene>
-        <div class="star" style="top:8%;left:15%"></div>
-        <div class="star" style="top:12%;left:60%"></div>
-        <div class="star" style="top:5%;left:88%"></div>
-        <div class="star" style="top:20%;left:35%"></div>
-        <div class="moss-mound"></div>
-        <div class="lantern-staff"></div>
-        <div class="kole"></div>
-        <div class="moss-nest" style="width:170px;height:56px;bottom:12%;left:30%"></div>
-        <div class="egg" style="bottom:18%;left:36%;width:58px;height:70px">
-          <div class="seam-line" style="left:27px;top:10px;width:3px;height:50px;transform:rotate(4deg);box-shadow:0 0 10px var(--gold);background:var(--gold)"></div>
-        </div>
-        <div class="firefly" style="bottom:26%;left:34%"></div>
-      </div>
-    </div>
-  </section>
+<!-- ===================== PAGE 4 ===================== -->
+<section class="page" data-page="4">
+  <span class="page-num">PAGE 4 · THE KEEPER</span>
+  <div class="page-art" aria-hidden="true">
+  <svg viewBox="0 0 720 400" role="img" aria-label="Kole the gentle elder kneels beside Mo with a lantern-staff; Mo's hands hover open and warm over the egg; the seam glows steady and bright with Pip the firefly settled on the shell, light spilling in soft rays.">
+    <defs>
+      <radialGradient id="p4glow" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#ffdd87" stop-opacity=".8"/>
+        <stop offset="55%" stop-color="#ffc247" stop-opacity=".3"/>
+        <stop offset="100%" stop-color="#ffc247" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="p4pip" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#ffdd87"/>
+        <stop offset="100%" stop-color="#ffc247" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <rect width="720" height="400" fill="#1a1f3d"/>
+    <circle cx="60" cy="50" r="2.5" fill="#ffdd87" opacity=".6"/>
+    <circle cx="180" cy="35" r="2" fill="#ffdd87" opacity=".5"/>
+    <circle cx="340" cy="55" r="2" fill="#ffdd87" opacity=".4"/>
+    <circle cx="500" cy="40" r="2" fill="#ffdd87" opacity=".5"/>
+    <circle cx="660" cy="55" r="2" fill="#ffdd87" opacity=".6"/>
+    <!-- soft light rays spilling -->
+    <g opacity=".18" fill="#ffc247">
+      <polygon points="360,300 250,60 300,60"/>
+      <polygon points="360,300 340,50 380,50"/>
+      <polygon points="360,300 420,60 470,60"/>
+    </g>
+    <!-- ground -->
+    <path d="M0 360 Q360 330 720 360 L720 400 L0 400 Z" fill="#243020"/>
+    <ellipse cx="360" cy="382" rx="130" ry="22" fill="#3f5c38"/>
+    <ellipse cx="360" cy="378" rx="115" ry="17" fill="#5b7d4a"/>
+    <!-- Kole: tall gentle elder with lantern-staff, kneeling beside Mo -->
+    <g>
+      <!-- staff -->
+      <line x1="560" y1="80" x2="560" y2="360" stroke="#5c6180" stroke-width="7" stroke-linecap="round"/>
+      <circle cx="560" cy="66" r="16" fill="#ffc247"/>
+      <circle cx="560" cy="66" r="26" fill="none" stroke="#ffdd87" stroke-width="2" opacity=".5"/>
+      <!-- body kneeling, moss robe -->
+      <ellipse cx="470" cy="320" rx="58" ry="52" fill="#3f5c38"/>
+      <ellipse cx="470" cy="252" rx="40" ry="34" fill="#5b7d4a"/>
+      <!-- head, big gentle -->
+      <circle cx="470" cy="200" r="40" fill="#e8b58a"/>
+      <path d="M432 192 Q470 158 508 192" stroke="#c9c3ae" stroke-width="9" fill="none" stroke-linecap="round"/>
+      <circle cx="458" cy="200" r="5" fill="#1a1f3d"/>
+      <circle cx="482" cy="200" r="5" fill="#1a1f3d"/>
+      <path d="M462 218 Q470 226 478 218" stroke="#1a1f3d" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+      <path d="M440 228 Q470 250 500 228" stroke="#c9c3ae" stroke-width="4" fill="none" stroke-linecap="round" opacity=".7"/>
+    </g>
+    <!-- glow around egg -->
+    <circle cx="280" cy="300" r="80" fill="url(#p4glow)"/>
+    <!-- egg with STEADY bright seam -->
+    <ellipse cx="280" cy="326" rx="36" ry="48" fill="#4a4f66" stroke="#5c6180" stroke-width="2.5"/>
+    <path d="M272 280 Q266 320 276 372" stroke="#ffc247" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <path d="M288 288 Q292 326 286 364" stroke="#ffdd87" stroke-width="2.5" fill="none" stroke-linecap="round" opacity=".9"/>
+    <!-- Pip the firefly settled on shell like small gold planet -->
+    <g>
+      <circle cx="304" cy="296" r="16" fill="url(#p4pip)"/>
+      <circle cx="304" cy="296" r="6" fill="#ffdd87"/>
+      <path d="M314 286 Q322 280 328 284" stroke="#ffdd87" stroke-width="2" fill="none" stroke-linecap="round"/>
+    </g>
+    <!-- Mo kneeling, hands OPEN and hovering warm -->
+    <g>
+      <circle cx="130" cy="250" r="40" fill="#e8b58a"/>
+      <path d="M92 236 Q92 192 130 192 Q168 192 168 236 Q168 220 130 220 Q92 220 92 236 Z" fill="#5b7d4a"/>
+      <path d="M92 236 Q130 216 168 236" stroke="#3f5c38" stroke-width="5" fill="none"/>
+      <circle cx="130" cy="196" r="6" fill="#ffc247"/>
+      <circle cx="118" cy="250" r="4.5" fill="#1a1f3d"/>
+      <circle cx="142" cy="250" r="4.5" fill="#1a1f3d"/>
+      <path d="M122 266 Q130 272 138 266" stroke="#1a1f3d" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <ellipse cx="136" cy="318" rx="42" ry="26" fill="#5b7d4a"/>
+      <!-- open hovering hands -->
+      <path d="M164 300 Q200 292 226 296" stroke="#e8b58a" stroke-width="13" fill="none" stroke-linecap="round"/>
+      <path d="M228 292 Q240 288 246 296" stroke="#e8b58a" stroke-width="9" fill="none" stroke-linecap="round"/>
+      <path d="M164 328 Q200 334 224 330" stroke="#e8b58a" stroke-width="13" fill="none" stroke-linecap="round"/>
+      <path d="M226 336 Q238 340 244 332" stroke="#e8b58a" stroke-width="9" fill="none" stroke-linecap="round"/>
+    </g>
+  </svg>
+  </div>
+  <div class="story-text">
+    <p><span class="line-hl">Kole the Keeper smiled. "Eggs are not squeezed open, little one. They are kept warm."</span></p>
+    <p><span class="line-hl">So Mo loosened his hands. He hummed HIS hum. Pip the firefly sat on the shell.</span></p>
+    <p><span class="line-hl">"The crack was not breaking," Kole said. "The crack was becoming."</span></p>
+    <p class="refrain"><span class="line-hl">Mo, Mo, small and slow. Wait with the egg. And watch it glow.</span></p>
+  </div>
+</section>
 
-  <section class="page" id="page-5">
-    <div class="page-num">PAGE 5</div>
-    <div class="page-inner">
-      <div class="page-text">
-        <h2>The Becoming</h2>
-        <p>And on the night the valley was quiet, the egg opened &mdash; not with a crack, but with a song.</p>
-        <p>Light filled the whole nest. It knew Mo&rsquo;s name.</p>
-        <p>Mo laughed. &ldquo;You were waiting for ME.&rdquo;</p>
-        <p>The little light glowed. Still, it glowed.</p>
-        <p>And somewhere far away, another egg began to hum&hellip;</p>
-      </div>
-      <div class="scene" data-scene>
-        <div class="star" style="top:8%;left:10%"></div>
-        <div class="star" style="top:5%;left:50%"></div>
-        <div class="star" style="top:10%;left:88%"></div>
-        <div class="star" style="top:16%;left:30%"></div>
-        <div class="star" style="top:18%;left:70%"></div>
-        <div style="position:absolute;top:35%;left:50%;transform:translate(-50%,-50%);width:140px;height:140px;border-radius:50%;background:radial-gradient(circle,var(--gold-seam) 0%,var(--gold) 45%,transparent 72%);opacity:.85"></div>
-        <div class="moss-mound"></div>
-        <div class="moss-nest" style="width:190px;height:64px"></div>
-        <div style="position:absolute;bottom:24%;left:50%;transform:translateX(-50%);width:44px;height:52px;background:radial-gradient(circle,var(--gold) 0%,var(--gold-seam) 60%,var(--gold) 100%);border-radius:50%;box-shadow:0 0 44px var(--gold)"></div>
-        <div class="firefly" style="top:55%;left:25%"></div>
-        <div class="firefly" style="top:50%;left:72%"></div>
-        <div class="firefly" style="top:60%;left:60%"></div>
-        <div style="position:absolute;bottom:8%;right:6%;width:60px;height:20px;background:var(--moss-1);border-radius:999px;opacity:.75"></div>
-        <div style="position:absolute;bottom:12%;right:11%;width:10px;height:14px;background:var(--gold-seam);border-radius:50%;opacity:.9"></div>
-      </div>
-    </div>
-  </section>
+<!-- ===================== PAGE 5 ===================== -->
+<section class="page" data-page="5">
+  <span class="page-num">PAGE 5 · THE BECOMING</span>
+  <div class="page-art" aria-hidden="true">
+  <svg viewBox="0 0 720 400" role="img" aria-label="Wide spread: the egg opened like a lantern, warm gold light flooding the moss nest; Mo lifts arms up with face lit, silhouette rim-lit; Pip circles; one more mossy nest in the far corner with a tiny seam of light for the next book.">
+    <defs>
+      <radialGradient id="p5glow" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#ffdd87" stop-opacity=".95"/>
+        <stop offset="45%" stop-color="#ffc247" stop-opacity=".5"/>
+        <stop offset="100%" stop-color="#ffc247" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="p5pip" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#ffdd87"/>
+        <stop offset="100%" stop-color="#ffc247" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <rect width="720" height="400" fill="#1a1f3d"/>
+    <circle cx="70" cy="45" r="2.5" fill="#ffdd87" opacity=".5"/>
+    <circle cx="200" cy="30" r="2" fill="#ffdd87" opacity=".4"/>
+    <circle cx="620" cy="40" r="2" fill="#ffdd87" opacity=".5"/>
+    <circle cx="680" cy="70" r="2" fill="#ffdd87" opacity=".4"/>
+    <!-- big warm light flooding -->
+    <circle cx="360" cy="280" r="170" fill="url(#p5glow)"/>
+    <circle cx="360" cy="280" r="90" fill="#ffc247" opacity=".3"/>
+    <circle cx="360" cy="280" r="48" fill="#ffdd87" opacity=".55"/>
+    <!-- egg opened like a lantern -->
+    <path d="M316 288 Q318 240 360 236 Q402 240 404 288 Q382 270 360 272 Q338 270 316 288 Z" fill="#4a4f66" stroke="#5c6180" stroke-width="2.5"/>
+    <path d="M316 288 Q340 300 360 300 Q380 300 404 288" fill="none" stroke="#5c6180" stroke-width="2.5"/>
+    <!-- wide moss nest -->
+    <ellipse cx="360" cy="322" rx="200" ry="36" fill="#3f5c38"/>
+    <ellipse cx="360" cy="316" rx="180" ry="27" fill="#5b7d4a"/>
+    <!-- Mo silhouette rim-lit, arms up, face lit -->
+    <g>
+      <circle cx="250" cy="180" r="34" fill="#e8b58a"/>
+      <path d="M220 168 Q220 132 250 132 Q280 132 280 168 Q280 152 250 152 Q220 152 220 168 Z" fill="#5b7d4a"/>
+      <circle cx="250" cy="136" r="6" fill="#ffc247"/>
+      <circle cx="240" cy="180" r="4" fill="#1a1f3d"/>
+      <circle cx="260" cy="180" r="4" fill="#1a1f3d"/>
+      <path d="M242 194 Q250 201 258 194" stroke="#1a1f3d" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <ellipse cx="254" cy="238" rx="38" ry="26" fill="#5b7d4a"/>
+      <path d="M220 220 Q196 186 186 158" stroke="#e8b58a" stroke-width="11" fill="none" stroke-linecap="round"/>
+      <path d="M288 220 Q310 186 318 158" stroke="#e8b58a" stroke-width="11" fill="none" stroke-linecap="round"/>
+      <!-- rim light -->
+      <path d="M216 168 Q216 130 250 130" stroke="#ffdd87" stroke-width="2.5" fill="none" opacity=".6"/>
+      <path d="M222 224 Q196 190 184 156" stroke="#ffdd87" stroke-width="2" fill="none" opacity=".55"/>
+    </g>
+    <!-- Pip circling -->
+    <g>
+      <circle cx="460" cy="180" r="14" fill="url(#p5pip)"/>
+      <circle cx="460" cy="180" r="5" fill="#ffdd87"/>
+      <path d="M470 172 Q478 166 484 170" stroke="#ffdd87" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <path d="M448 168 Q442 162 436 164" stroke="#ffdd87" stroke-width="2" fill="none" stroke-linecap="round" opacity=".6"/>
+    </g>
+    <!-- far corner: ONE more mossy nest with tiny seam of light -->
+    <g>
+      <ellipse cx="640" cy="372" rx="48" ry="12" fill="#3f5c38"/>
+      <ellipse cx="640" cy="368" rx="40" ry="9" fill="#5b7d4a"/>
+      <ellipse cx="640" cy="356" rx="16" ry="21" fill="#4a4f66" stroke="#5c6180" stroke-width="2"/>
+      <path d="M637 336 Q635 350 640 374" stroke="#ffc247" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <circle cx="640" cy="356" r="28" fill="url(#p5glow)" opacity=".5"/>
+    </g>
+  </svg>
+  </div>
+  <div class="story-text">
+    <p><span class="line-hl">And on the night the valley was quiet, the egg opened — not with a crack, but with a song.</span></p>
+    <p><span class="line-hl">Light filled the whole nest. It knew Mo's name.</span></p>
+    <p><span class="line-hl">Mo laughed. "You were waiting for ME."</span></p>
+    <p><span class="line-hl">The little light glowed. Still, it glowed.</span></p>
+    <p><span class="line-hl">And somewhere far away, another egg began to hum...</span></p>
+  </div>
+</section>
 
 </main>
 
-<footer class="footer">
-  <div class="wrap">
-    <p class="lane">SOETech Storyteller Lane &middot; The Lantern Keeper &middot; base outline v1 - expanding soon</p>
-    <p class="teaser">Somewhere, another egg was humming...</p>
-  </div>
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <p class="footer-line">SOETech Storyteller Lane · The Lantern Keeper · base outline v1 - expanding soon</p>
+  <p class="teaser">Somewhere, another egg was humming...</p>
 </footer>
 
 <script>
-(function(){
-  var btn = document.createElement('button');
-  btn.textContent = 'Read it aloud';
-  btn.setAttribute('aria-pressed','false');
-  btn.style.cssText = 'position:fixed;bottom:1.25rem;right:1.25rem;background:#ffc247;color:#1a1f3d;border:none;border-radius:999px;padding:.9rem 1.75rem;font-family:Inter,system-ui,sans-serif;font-size:1rem;font-weight:600;cursor:pointer;box-shadow:0 4px 20px rgba(255,194,71,.4);z-index:99';
-  document.body.appendChild(btn);
-
-  var active = false;
+(function () {
+  'use strict';
+  var btn = document.getElementById('readBtn');
   var timers = [];
+  var SPEED = 3200; // ms per line — gentle read-along pace
 
-  function highlightLines(page){
-    var p = page.querySelectorAll('.page-text p, .page-text .refrain');
-    p.forEach(function(el){ el.classList.remove('reading'); });
-    var i = 0;
-    function next(){
-      if(i >= p.length){ p.forEach(function(el){ el.classList.remove('reading'); }); return; }
-      p[i].classList.add('reading');
-      var dur = 1400 + p[i].textContent.length * 45;
-      timers.push(setTimeout(function(){ i++; next(); }, dur));
-    }
-    next();
+  function clearTimers() {
+    for (var i = 0; i < timers.length; i++) clearTimeout(timers[i]);
+    timers = [];
   }
 
-  btn.addEventListener('click', function(){
-    if(active){
-      timers.forEach(clearTimeout); timers = [];
-      document.querySelectorAll('.reading').forEach(function(el){ el.classList.remove('reading'); });
-      active = false; btn.textContent = 'Read it aloud'; btn.setAttribute('aria-pressed','false');
-      return;
-    }
-    active = true; btn.textContent = 'Pause'; btn.setAttribute('aria-pressed','true');
-    var pages = document.querySelectorAll('.page');
-    var pi = 0;
-    function readPage(){
-      if(pi >= pages.length || !active){
-        active = false; btn.textContent = 'Read it aloud'; btn.setAttribute('aria-pressed','false');
-        return;
-      }
-      highlightLines(pages[pi]);
-      var lines = pages[pi].querySelectorAll('.page-text p, .page-text .refrain');
-      var total = 0;
-      lines.forEach(function(el){ total += 1400 + el.textContent.length * 45; });
-      timers.push(setTimeout(function(){ pi++; readPage(); }, total));
-    }
-    readPage();
+  function clearActive() {
+    var active = document.querySelectorAll('.line-hl.active');
+    for (var i = 0; i < active.length; i++) active[i].classList.remove('active');
+  }
+
+  function stop() {
+    clearTimers();
+    clearActive();
+    document.body.classList.remove('reading');
+    btn.setAttribute('aria-pressed', 'false');
+  }
+
+  function start() {
+    stop();
+    document.body.classList.add('reading');
+    btn.setAttribute('aria-pressed', 'true');
+    var lines = document.querySelectorAll('.line-hl');
+    lines.forEach(function (line, i) {
+      var t = setTimeout(function () {
+        clearActive();
+        line.classList.add('active');
+        if (line.scrollIntoView) {
+          line.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }, i * SPEED);
+      timers.push(t);
+    });
+    // gentle close: clear the last highlight after the final line
+    var end = setTimeout(function () {
+      clearActive();
+      document.body.classList.remove('reading');
+      btn.setAttribute('aria-pressed', 'false');
+    }, lines.length * SPEED + 1200);
+    timers.push(end);
+  }
+
+  btn.addEventListener('click', function () {
+    if (document.body.classList.contains('reading')) { stop(); } else { start(); }
   });
 
-  var st = document.createElement('style');
-  st.textContent = '.reading{background:rgba(255,194,71,.18);border-radius:8px;transition:background .4s}';
-  document.head.appendChild(st);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') stop();
+  });
 })();
 </script>
 </body>
