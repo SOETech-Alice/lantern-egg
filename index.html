@@ -661,7 +661,7 @@ footer{padding:64px 0 48px;text-align:center;border-top:1px solid rgba(255,221,1
     btn.querySelector('.pa-label').textContent = 'Reading…';
     currentBtn = btn;
     function next(){
-      if(i >= beats.length || !pageAudio[p]){
+      if(i >= beats.length){
         // done
         btn.classList.remove('playing');
         btn.querySelector('.pa-label').textContent = 'Listen';
