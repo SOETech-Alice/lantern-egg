@@ -93,6 +93,18 @@ footer{padding:64px 0 48px;text-align:center;border-top:1px solid rgba(255,221,1
   .read-btn{padding:12px 26px;font-size:13px}
   .refrain{font-size:15px}
 }
+
+/* ---------- PAGE AUDIO PLAYERS ---------- */
+.page-num{display:inline-block}
+.page-audio-btn{display:flex;align-items:center;gap:10px;margin:2px 0 14px;background:linear-gradient(135deg,rgba(255,194,71,.14),rgba(255,194,71,.05));border:1px solid rgba(255,194,71,.35);color:#ffe9b8;border-radius:999px;padding:9px 18px;cursor:pointer;font:600 15px Inter,system-ui,sans-serif;transition:all .25s ease;width:fit-content}
+.page-audio-btn:hover{background:rgba(255,194,71,.22);transform:translateY(-1px)}
+.page-audio-btn.playing{background:rgba(255,194,71,.28);border-color:#ffc247}
+.pa-icon{font-size:13px;width:18px;display:inline-block;text-align:center}
+.page-audio-btn.playing .pa-icon{animation:papulse 1s ease-in-out infinite}
+@keyframes papulse{0%,100%{opacity:1}50%{opacity:.35}}
+.pa-status{font-size:12px;color:rgba(255,233,184,.75);font-weight:500}
+@media(max-width:520px){.page-audio-btn{padding:8px 14px;font-size:14px}}
+
 </style>
 </head>
 <body>
@@ -113,7 +125,7 @@ footer{padding:64px 0 48px;text-align:center;border-top:1px solid rgba(255,221,1
   <div class="wrap hero-inner">
     <span class="badge">THE LANTERN KEEPER · BOOK ONE</span>
     <h1>Mo and the <span class="gold">Lantern Egg</span></h1>
-    <p class="subtitle">A parable about the crack that is not breaking</p>
+    <p class="subtitle">A story about the crack that is becoming</p>
     <svg class="hero-lantern" width="120" height="120" viewBox="0 0 120 120" aria-hidden="true">
       <defs>
         <radialGradient id="heroGlow" cx="50%" cy="50%" r="50%">
@@ -137,14 +149,15 @@ footer{padding:64px 0 48px;text-align:center;border-top:1px solid rgba(255,221,1
     <span class="start-label">📖&nbsp; Read it aloud</span>
     <span class="stop-label">⏸&nbsp; Stop read-along</span>
   </button>
-  <p class="read-hint">Watch the story light up, line by line — read along with it.</p>
+  <p class="read-hint">Watch the story light up, line by line — or press Listen on any page to hear it read.</p>
 </section>
 
 <main class="wrap">
 
 <!-- ===================== PAGE 1 ===================== -->
 <section class="page" data-page="1">
-  <span class="page-num">PAGE 1 · THE FINDING</span>
+    <button class="page-audio-btn" data-page="1" aria-label="Play page 1 narration, read by Sarah Heart voice"><span class="pa-icon">▶</span><span class="pa-label">Listen</span><span class="pa-status" id="pastatus-1"></span></button>
+<span class="page-num">PAGE 1 · THE BREAKING</span>
   <div class="page-art" aria-hidden="true">
   <svg viewBox="0 0 720 400" role="img" aria-label="Mo kneels at a moss nest under giant pine roots, a stone egg with one thin gold seam glowing among fireflies.">
     <defs>
@@ -225,15 +238,23 @@ footer{padding:64px 0 48px;text-align:center;border-top:1px solid rgba(255,221,1
   </svg>
   </div>
   <div class="story-text">
-    <p><span class="line-hl">Mo found it under the roots of the old pine: an egg made of stone, humming like a sleepy song.</span></p>
-    <p><span class="line-hl">It was warm. It glowed, just a little, at one thin crack.</span></p>
-    <p class="refrain"><span class="line-hl">Mo, Mo, small and slow. Wait with the egg. And watch it glow.</span></p>
+    <p class=""><span class="line-hl">The night Mo hatched out of his egg, the whole valley heard the sound.</span></p>
+    <p class=""><span class="line-hl">Not a bang.</span></p>
+    <p class=""><span class="line-hl">Not a crash.</span></p>
+    <p class=""><span class="line-hl">A hum, then a glow — and then the shell burst into</span></p>
+    <p class=""><span class="line-hl">a shower of warm little lights, like tiny stars learning to fly.</span></p>
+    <p class=""><span class="line-hl">And in the middle of all that shine sat a small green boy, blinking.</span></p>
+    <p class=""><span class="line-hl">Calm.</span></p>
+    <p class=""><span class="line-hl">Quiet.</span></p>
+    <p class=""><span class="line-hl">Like he had known, all along, that this was his moment.</span></p>
+    <p class="refrain"><span class="line-hl">Somewhere in you, there is a light. Even the dark knows your name.</span></p>
   </div>
 </section>
 
 <!-- ===================== PAGE 2 ===================== -->
 <section class="page" data-page="2">
-  <span class="page-num">PAGE 2 · THE QUESTION</span>
+    <button class="page-audio-btn" data-page="2" aria-label="Play page 2 narration, read by Sarah Heart voice"><span class="pa-icon">▶</span><span class="pa-label">Listen</span><span class="pa-status" id="pastatus-2"></span></button>
+<span class="page-num">PAGE 2 · THE VALLEY</span>
   <div class="page-art" aria-hidden="true">
   <svg viewBox="0 0 720 400" role="img" aria-label="Mo sits cross-legged humming to the egg on his lap, a glowing thread of breath connecting them, while an owl and moths watch cozily from the dark.">
     <defs>
@@ -303,15 +324,26 @@ footer{padding:64px 0 48px;text-align:center;border-top:1px solid rgba(255,221,1
   </svg>
   </div>
   <div class="story-text">
-    <p><span class="line-hl">"Will you sing for me?" Mo whispered.</span></p>
-    <p><span class="line-hl">The egg only hummed. So Mo held it close, every day, and hummed back.</span></p>
+    <p class=""><span class="line-hl">The Valley of Quiet Eggs had a rule: eggs hatch birds.</span></p>
+    <p class=""><span class="line-hl">Always birds.</span></p>
+    <p class=""><span class="line-hl">Nobody had ever seen a boy come out of an egg.</span></p>
+    <p class=""><span class="line-hl">&quot;Who is he?&quot; they whispered.</span></p>
+    <p class=""><span class="line-hl">&quot;What is he?&quot;</span></p>
+    <p class=""><span class="line-hl">But Kole the Keeper already knew.</span></p>
+    <p class=""><span class="line-hl">He had heard the hum for seven years</span></p>
+    <p class=""><span class="line-hl">from the hum-nest on the hill.</span></p>
+    <p class=""><span class="line-hl">So he smiled his slow smile and said:</span></p>
+    <p class=""><span class="line-hl">&quot;That is Mo.</span></p>
+    <p class=""><span class="line-hl">He was not waiting to hatch.</span></p>
+    <p class=""><span class="line-hl">He was waiting to SHINE.&quot;</span></p>
     <p class="refrain"><span class="line-hl">Mo, Mo, small and slow. Wait with the egg. And watch it glow.</span></p>
   </div>
 </section>
 
 <!-- ===================== PAGE 3 ===================== -->
 <section class="page" data-page="3">
-  <span class="page-num">PAGE 3 · THE WORRY</span>
+    <button class="page-audio-btn" data-page="3" aria-label="Play page 3 narration, read by Sarah Heart voice"><span class="pa-icon">▶</span><span class="pa-label">Listen</span><span class="pa-status" id="pastatus-3"></span></button>
+<span class="page-num">PAGE 3 · THE WORRY</span>
   <div class="page-art" aria-hidden="true">
   <svg viewBox="0 0 720 400" role="img" aria-label="Close-up of Mo's worried big eyes above hands wrapped too tight around the egg, the gold seam flickering and dimming, the dark around soft and not scary.">
     <defs>
@@ -357,16 +389,21 @@ footer{padding:64px 0 48px;text-align:center;border-top:1px solid rgba(255,221,1
   </svg>
   </div>
   <div class="story-text">
-    <p><span class="line-hl">One night, the crack began to spread.</span></p>
-    <p><span class="line-hl">"Oh no," Mo said. "Did I break it?"</span></p>
-    <p><span class="line-hl">He held it tighter. The egg shivered.</span></p>
+    <p class=""><span class="line-hl">But growing is not the same as knowing.</span></p>
+    <p class=""><span class="line-hl">Mo tried to talk to birds (they chirped and flew).</span></p>
+    <p class=""><span class="line-hl">Mo tried to sit like stones</span></p>
+    <p class=""><span class="line-hl">(he could not).</span></p>
+    <p class=""><span class="line-hl">Nothing worked like it should, and the light inside him</span></p>
+    <p class=""><span class="line-hl">started to ache.</span></p>
+    <p class=""><span class="line-hl">He asked Kole: &quot;What if I crack again?&quot;</span></p>
     <p class="refrain"><span class="line-hl">Mo, Mo, small and slow. Wait with the egg. And watch it glow.</span></p>
   </div>
 </section>
 
 <!-- ===================== PAGE 4 ===================== -->
 <section class="page" data-page="4">
-  <span class="page-num">PAGE 4 · THE KEEPER</span>
+    <button class="page-audio-btn" data-page="4" aria-label="Play page 4 narration, read by Sarah Heart voice"><span class="pa-icon">▶</span><span class="pa-label">Listen</span><span class="pa-status" id="pastatus-4"></span></button>
+<span class="page-num">PAGE 4 · THE KEEPER'S SECRET</span>
   <div class="page-art" aria-hidden="true">
   <svg viewBox="0 0 720 400" role="img" aria-label="Kole the gentle elder kneels beside Mo with a lantern-staff; Mo's hands hover open and warm over the egg; the seam glows steady and bright with Pip the firefly settled on the shell, light spilling in soft rays.">
     <defs>
@@ -444,16 +481,23 @@ footer{padding:64px 0 48px;text-align:center;border-top:1px solid rgba(255,221,1
   </svg>
   </div>
   <div class="story-text">
-    <p><span class="line-hl">Kole the Keeper smiled. "Eggs are not squeezed open, little one. They are kept warm."</span></p>
-    <p><span class="line-hl">So Mo loosened his hands. He hummed HIS hum. Pip the firefly sat on the shell.</span></p>
-    <p><span class="line-hl">"The crack was not breaking," Kole said. "The crack was becoming."</span></p>
+    <p class=""><span class="line-hl">Kole said: &quot;Everyone carries an egg inside.</span></p>
+    <p class=""><span class="line-hl">Most folks keep it shut their</span></p>
+    <p class=""><span class="line-hl">whole life, because cracks look scary.</span></p>
+    <p class=""><span class="line-hl">But hear me, little light:</span></p>
+    <p class=""><span class="line-hl">The crack was never breaking.</span></p>
+    <p class=""><span class="line-hl">The crack was BECOMING.&quot;</span></p>
+    <p class=""><span class="line-hl">So Mo stopped squeezing his fear, and started listening instead.</span></p>
+    <p class=""><span class="line-hl">And deep inside, something beautiful answered his hum.</span></p>
+    <p class=""><span class="line-hl">Ukweeee.</span></p>
     <p class="refrain"><span class="line-hl">Mo, Mo, small and slow. Wait with the egg. And watch it glow.</span></p>
   </div>
 </section>
 
 <!-- ===================== PAGE 5 ===================== -->
 <section class="page" data-page="5">
-  <span class="page-num">PAGE 5 · THE BECOMING</span>
+    <button class="page-audio-btn" data-page="5" aria-label="Play page 5 narration, read by Sarah Heart voice"><span class="pa-icon">▶</span><span class="pa-label">Listen</span><span class="pa-status" id="pastatus-5"></span></button>
+<span class="page-num">PAGE 5 · THE LIGHT KNOWS</span>
   <div class="page-art" aria-hidden="true">
   <svg viewBox="0 0 720 400" role="img" aria-label="Wide spread: the egg opened like a lantern, warm gold light flooding the moss nest; Mo lifts arms up with face lit, silhouette rim-lit; Pip circles; one more mossy nest in the far corner with a tiny seam of light for the next book.">
     <defs>
@@ -515,11 +559,12 @@ footer{padding:64px 0 48px;text-align:center;border-top:1px solid rgba(255,221,1
   </svg>
   </div>
   <div class="story-text">
-    <p><span class="line-hl">And on the night the valley was quiet, the egg opened — not with a crack, but with a song.</span></p>
-    <p><span class="line-hl">Light filled the whole nest. It knew Mo's name.</span></p>
-    <p><span class="line-hl">Mo laughed. "You were waiting for ME."</span></p>
-    <p><span class="line-hl">The little light glowed. Still, it glowed.</span></p>
-    <p><span class="line-hl">And somewhere far away, another egg began to hum...</span></p>
+    <p class=""><span class="line-hl">That night, Mo dreamed of the day he would shine again — a bigger shine,</span></p>
+    <p class=""><span class="line-hl">that helps the whole valley find things they lost in the dark.</span></p>
+    <p class=""><span class="line-hl">When the valley was quiet, Mo whispered the secret to himself, one time:</span></p>
+    <p class=""><span class="line-hl">&quot;The crack was not breaking.</span></p>
+    <p class=""><span class="line-hl">It was becoming.&quot;</span></p>
+    <p class=""><span class="line-hl">And far away on the hill, one small egg hummed back.</span></p>
   </div>
 </section>
 
@@ -587,6 +632,58 @@ footer{padding:64px 0 48px;text-align:center;border-top:1px solid rgba(255,221,1
     if (e.key === 'Escape') stop();
   });
 })();
+
+  const AUDIO_BEATS = {"1": [{"f": "audio/p1_001.mp3", "d": 3.08}, {"f": "audio/p1_002.mp3", "d": 0.9}, {"f": "audio/p1_003.mp3", "d": 0.94}, {"f": "audio/p1_004.mp3", "d": 2.39}, {"f": "audio/p1_005.mp3", "d": 3.36}, {"f": "audio/p1_006.mp3", "d": 3.13}, {"f": "audio/p1_007.mp3", "d": 0.71}, {"f": "audio/p1_008.mp3", "d": 0.75}, {"f": "audio/p1_009.mp3", "d": 2.8}, {"f": "audio/p1_012.mp3", "d": 4.28}, {"f": "audio/p1_013.mp3", "d": 2.95}], "2": [{"f": "audio/p2_014.mp3", "d": 2.85}, {"f": "audio/p2_015.mp3", "d": 1.06}, {"f": "audio/p2_016.mp3", "d": 2.23}, {"f": "audio/p2_017.mp3", "d": 1.62}, {"f": "audio/p2_018.mp3", "d": 0.9}, {"f": "audio/p2_019.mp3", "d": 1.6}, {"f": "audio/p2_020.mp3", "d": 1.62}, {"f": "audio/p2_021.mp3", "d": 1.42}, {"f": "audio/p2_022.mp3", "d": 1.79}, {"f": "audio/p2_023.mp3", "d": 0.91}, {"f": "audio/p2_024.mp3", "d": 1.42}, {"f": "audio/p2_025.mp3", "d": 1.33}, {"f": "audio/p2_026.mp3", "d": 3.82}, {"f": "audio/p2_028.mp3", "d": 3.38}], "3": [{"f": "audio/p3_029.mp3", "d": 1.95}, {"f": "audio/p3_030.mp3", "d": 2.47}, {"f": "audio/p3_031.mp3", "d": 1.34}, {"f": "audio/p3_032.mp3", "d": 0.99}, {"f": "audio/p3_033.mp3", "d": 2.3}, {"f": "audio/p3_034.mp3", "d": 1.02}, {"f": "audio/p3_035.mp3", "d": 1.98}, {"f": "audio/p3_036.mp3", "d": 3.7}, {"f": "audio/p3_037.mp3", "d": 2.92}, {"f": "audio/p3_038.mp3", "d": 3.37}], "4": [{"f": "audio/p4_039.mp3", "d": 2.28}, {"f": "audio/p4_040.mp3", "d": 1.3}, {"f": "audio/p4_041.mp3", "d": 1.89}, {"f": "audio/p4_042.mp3", "d": 1.32}, {"f": "audio/p4_043.mp3", "d": 1.45}, {"f": "audio/p4_044.mp3", "d": 1.2}, {"f": "audio/p4_045.mp3", "d": 3.08}, {"f": "audio/p4_046.mp3", "d": 2.65}, {"f": "audio/p4_047.mp3", "d": 0.83}, {"f": "audio/p4_048.mp3", "d": 3.61}, {"f": "audio/p4_049.mp3", "d": 3.76}, {"f": "audio/p4_050.mp3", "d": 3.37}], "5": [{"f": "audio/p5_051.mp3", "d": 3.09}, {"f": "audio/p5_052.mp3", "d": 2.97}, {"f": "audio/p5_053.mp3", "d": 3.38}, {"f": "audio/p5_054.mp3", "d": 1.41}, {"f": "audio/p5_055.mp3", "d": 1.02}, {"f": "audio/p5_056.mp3", "d": 2.65}]};
+  const pageAudio = {};
+  let currentAudio = null, currentBtn = null;
+  function stopAll(){
+    if(currentAudio){currentAudio.pause(); try{currentAudio.currentTime=0;}catch(e){}}
+    if(currentBtn){currentBtn.classList.remove('playing'); currentBtn.querySelector('.pa-label').textContent='Listen';}
+    document.querySelectorAll('.page-audio-btn').forEach(b=>{b.classList.remove('playing');});
+    document.querySelectorAll('.line-hl.active').forEach(s=>s.classList.remove('active'));
+    currentAudio=null; currentBtn=null;
+    window.__readTimer && clearTimeout(window.__readTimer);
+  }
+  function clearSpans(pageEl){ pageEl.querySelectorAll('.line-hl.active').forEach(s=>s.classList.remove('active')); }
+  function highlightSeq(pageEl, idx){
+    const spans = pageEl.querySelectorAll('.line-hl');
+    spans.forEach(s=>s.classList.remove('active'));
+    if(spans[idx]) spans[idx].classList.add('active');
+  }
+  function playPage(p, btn){
+    if(btn.classList.contains('playing')){ stopAll(); return; }
+    stopAll();
+    const pageEl = document.querySelector('section.page[data-page="'+p+'"]');
+    const beats = AUDIO_BEATS[String(p)] || [];
+    let i = 0;
+    const status = document.getElementById('pastatus-'+p);
+    btn.classList.add('playing');
+    btn.querySelector('.pa-label').textContent = 'Reading…';
+    currentBtn = btn;
+    function next(){
+      if(i >= beats.length || !pageAudio[p]){
+        // done
+        btn.classList.remove('playing');
+        btn.querySelector('.pa-label').textContent = 'Listen';
+        if(status) status.textContent = '';
+        return;
+      }
+      const beat = beats[i];
+      const a = new Audio(beat.f);
+      currentAudio = a;
+      pageAudio[p] = a;
+      // highlight the matching span if one exists at position i, else cycle
+      highlightSeq(pageEl, i % pageEl.querySelectorAll('.line-hl').length);
+      a.play().catch(()=>{});
+      let dur = beat.d + 0.45;
+      window.__readTimer = setTimeout(()=>{ a.pause(); i++; next(); }, dur*1000);
+    }
+    next();
+  }
+  document.querySelectorAll('.page-audio-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=> playPage(btn.dataset.page, btn));
+  });
+  // Original read-along (visual only) still works; note in UI it is now silent-highlight
 </script>
 </body>
 </html>
