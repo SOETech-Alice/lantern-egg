@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Mo and the Lantern Egg — A Lantern Keeper Story</title>
+<style>
+:root{
+  --night-1:#1a1f3d; --night-2:#2b3468;
+  --moss-1:#5b7d4a; --moss-2:#3f5c38;
+  --gold:#ffc247; --gold-seam:#ffdd87;
+  --cream:#fff6e6;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  background:linear-gradient(180deg,var(--night-1) 0%,var(--night-2) 100%);
+  color:var(--cream);
+  font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1100px;margin:0 auto;padding:0 1.25rem}
+
+/* ---------- HERO ---------- */
+.hero{padding:4rem 0 3rem;text-align:center;position:relative;overflow:hidden}
+.hero-bird{position:absolute;border-radius:50%;opacity:.9;pointer-events:none}
+.hero .series-badge{
+  display:inline-block;font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;
+  border:1px solid var(--gold);color:var(--gold);border-radius:999px;padding:.5rem 1.25rem;margin-bottom:1.75rem;
+}
+.hero h1{
+  font-size:clamp(2rem,6vw,3.4rem);font-weight:800;letter-spacing:-.01em;line-height:1.15;
+  color:var(--cream);margin-bottom:1rem;
+}
+.hero h1 .glow-word{color:var(--gold);text-shadow:0 0 24px rgba(255,194,71,.45)}
+.hero .subtitle{font-size:1.1rem;color:#c9c2e8;max-width:34rem;margin:0 auto;font-style:italic}
+.hero-egg{
+  width:120px;height:96px;margin:2.5rem auto 0;position:relative;
+  background:linear-gradient(160deg,#8a94c9 0%,var(--night-2) 70%);
+  border-radius:50% 50% 48% 48%/62% 62% 40% 40%;
+  box-shadow:0 0 40px rgba(255,194,71,.25),inset -8px -10px 24px rgba(0,0,0,.4);
+}
+.hero-egg .seam{
+  position:absolute;left:50%;top:18%;width:3px;height:64%;
+  background:linear-gradient(180deg,transparent,var(--gold-seam) 30%,var(--gold) 70%,transparent);
+  border-radius:3px;transform:translateX(-50%);
+  animation:pulse 3.5s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:.7}50%{opacity:1}}
+
+/* ---------- STORYBOOK PAGE CARD ---------- */
+.page{background:rgba(43,52,104,.35);border:1px solid rgba(255,221,135,.18);border-radius:28px;padding:2.5rem;margin:2.5rem 0;position:relative}
+.page-num{
+  display:inline-flex;align-items:center;justify-content:center;
+  background:var(--moss-2);color:var(--cream);font-size:.72rem;letter-spacing:.18em;
+  border-radius:999px;padding:.45rem 1.1rem;margin-bottom:1.5rem;
+}
+.page-inner{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:center}
+.page h2{font-size:1.35rem;font-weight:700;color:var(--gold-seam);margin-bottom:1rem;letter-spacing:.02em}
+.page p{margin-bottom:1rem;font-size:1.06rem}
+.page p:last-of-type{margin-bottom:0}
+.refrain{
+  font-style:italic;color:var(--gold);margin-top:1.5rem;padding:.85rem 1.1rem;
+  border-left:3px solid var(--gold);border-radius:0 12px 12px 0;
+  background:rgba(255,194,71,.08);font-size:1rem;
+}
+
+/* ---------- SCENE ILLUSTRATIONS (pure CSS) ---------- */
+.scene{
+  border-radius:20px;overflow:hidden;aspect-ratio:4/3;position:relative;
+  background:linear-gradient(180deg,var(--night-1) 0%,var(--night-2) 100%);
+}
+.star{position:absolute;width:3px;height:3px;border-radius:50%;background:var(--cream);opacity:.7}
+.firefly{position:absolute;width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 12px var(--gold)}
+.moss-mound{
+  position:absolute;bottom:0;left:-10%;width:120%;height:32%;
+  background:var(--moss-2);border-radius:60% 50% 0 0/100% 80% 0 0;
+}
+.moss-nest{
+  position:absolute;bottom:14%;left:50%;transform:translateX(-50%);
+  width:150px;height:52px;background:var(--moss-1);border-radius:999px;
+}
+.egg{
+  position:absolute;bottom:22%;left:50%;transform:translateX(-50%);
+  width:52px;height:64px;
+  background:linear-gradient(160deg,#9aa3d4 0%,var(--night-2) 75%);
+  border-radius:50% 50% 46% 46%/62% 62% 40% 40%;
+  box-shadow:0 0 20px rgba(255,194,71,.3);
+}
+.seam-line{position:absolute;background:linear-gradient(180deg,transparent,var(--gold-seam),transparent);border-radius:2px}
+.pine-roots{position:absolute;bottom:26%;width:80px;height:70px;border-top:14px solid var(--moss-2);border-left:8px solid var(--moss-2);border-radius:50% 50% 0 0}
+.moth{position:absolute;width:14px;height:10px;border-radius:50% 50% 40% 40%;background:var(--cream);opacity:.8}
+.owl{position:absolute;width:56px;height:70px;background:var(--moss-2);border-radius:50% 50% 45% 45%;opacity:.9}
+.owl::before,.owl::after{content:'';position:absolute;top:14px;width:14px;height:14px;border-radius:50%;background:var(--night-1)}
+.owl::before{left:12px}.owl::after{right:12px}
+.kole{position:absolute;bottom:22%;right:14%;width:70px;height:130px;background:var(--moss-2);border-radius:34px 34px 22px 22px}
+.kole::before{content:'';position:absolute;top:-26px;left:50%;transform:translateX(-50%);width:44px;height:44px;border-radius:50%;background:var(--night-2)}
+.lantern-staff{position:absolute;bottom:0;right:8%;width:8px;height:170px;background:var(--night-1);border-radius:4px}
+.lantern-staff::before{content:'';position:absolute;top:0;left:-16px;width:40px;height:34px;background:var(--gold);border-radius:10px;box-shadow:0 0 24px var(--gold);opacity:.85}
+
+/* ---------- FOOTER ---------- */
+.footer{text-align:center;padding:4rem 0 3rem;border-top:1px solid rgba(255,221,135,.12)}
+.footer .lane{color:#c9c2e8;font-size:.95rem;letter-spacing:.05em}
+.footer .teaser{color:var(--gold);font-style:italic;margin-top:1rem;font-size:1.05rem}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width:760px){
+  .page-inner{grid-template-columns:1fr}
+  .page{padding:1.75rem;margin:1.5rem 0}
+  .hero{padding:3rem 0 2rem}
+  .hero-egg{width:90px;height:72px}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="series-badge">THE LANTERN KEEPER &middot; BOOK ONE</div>
+    <h1>Mo and the <span class="glow-word">Lantern Egg</span></h1>
+    <p class="subtitle">A parable about the crack that is not breaking</p>
+    <div class="hero-egg"><div class="seam"></div></div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="page" id="page-1">
+    <div class="page-num">PAGE 1</div>
+    <div class="page-inner">
+      <div class="page-text">
+        <h2>The Finding</h2>
+        <p>Mo found it under the roots of the old pine: an egg made of stone, humming like a sleepy song.</p>
+        <p>It was warm. It glowed, just a little, at one thin crack.</p>
+        <div class="refrain">Mo, Mo, small and slow. Wait with the egg. And watch it glow.</div>
+      </div>
+      <div class="scene" data-scene>
+        <div class="star" style="top:12%;left:18%"></div>
+        <div class="star" style="top:8%;left:70%"></div>
+        <div class="star" style="top:20%;left:85%"></div>
+        <div class="star" style="top:15%;left:45%"></div>
+        <div class="firefly" style="top:40%;left:22%"></div>
+        <div class="firefly" style="top:35%;left:30%"></div>
+        <div class="firefly" style="top:45%;left:75%"></div>
+        <div class="moss-mound"></div>
+        <div class="pine-roots" style="left:8%"></div>
+        <div class="pine-roots" style="left:80%;transform:scaleX(-1)"></div>
+        <div class="moss-nest"></div>
+        <div class="egg"><div class="seam-line" style="left:24px;top:10px;width:3px;height:44px;transform:rotate(6deg)"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="page-2">
+    <div class="page-num">PAGE 2</div>
+    <div class="page-inner">
+      <div class="page-text">
+        <h2>The Question</h2>
+        <p>&ldquo;Will you sing for me?&rdquo; Mo whispered.</p>
+        <p>The egg only hummed. So Mo held it close, every day, and hummed back.</p>
+        <div class="refrain">Mo, Mo, small and slow. Wait with the egg. And watch it glow.</div>
+      </div>
+      <div class="scene" data-scene>
+        <div class="star" style="top:10%;left:25%"></div>
+        <div class="star" style="top:18%;left:80%"></div>
+        <div class="star" style="top:6%;left:55%"></div>
+        <div class="moth" style="top:35%;left:15%"></div>
+        <div class="moth" style="top:28%;left:78%"></div>
+        <div class="owl" style="top:25%;left:82%"></div>
+        <div class="moss-mound"></div>
+        <div class="moss-nest"></div>
+        <div class="egg"><div class="seam-line" style="left:24px;top:10px;width:3px;height:44px;transform:rotate(6deg)"></div></div>
+        <div class="seam-line" style="bottom:30%;left:36%;width:70px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);border-radius:2px"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="page-3">
+    <div class="page-num">PAGE 3</div>
+    <div class="page-inner">
+      <div class="page-text">
+        <h2>The Worry</h2>
+        <p>One night, the crack began to spread.</p>
+        <p>&ldquo;Oh no,&rdquo; Mo said. &ldquo;Did I break it?&rdquo;</p>
+        <p>He held it tighter. The egg shivered.</p>
+        <div class="refrain">Mo, Mo, small and slow. Wait with the egg. And watch it glow.</div>
+      </div>
+      <div class="scene" data-scene>
+        <div class="star" style="top:14%;left:20%"></div>
+        <div class="star" style="top:10%;left:75%"></div>
+        <div class="star" style="top:22%;left:90%"></div>
+        <div class="moss-mound"></div>
+        <div class="moss-nest" style="width:180px;height:60px"></div>
+        <div class="egg" style="bottom:20%;width:60px;height:74px">
+          <div class="seam-line" style="left:26px;top:8px;width:3px;height:58px;transform:rotate(8deg);box-shadow:0 0 6px var(--gold)"></div>
+          <div class="seam-line" style="left:30px;top:30px;width:22px;height:3px;transform:rotate(40deg)"></div>
+          <div class="seam-line" style="left:12px;top:38px;width:16px;height:2px;transform:rotate(-35deg)"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="page-4">
+    <div class="page-num">PAGE 4</div>
+    <div class="page-inner">
+      <div class="page-text">
+        <h2>The Keeper</h2>
+        <p>Kole the Keeper smiled. &ldquo;Eggs are not squeezed open, little one. They are kept warm.&rdquo;</p>
+        <p>So Mo loosened his hands. He hummed HIS hum. Pip the firefly sat on the shell.</p>
+        <p>&ldquo;The crack was not breaking,&rdquo; Kole said. &ldquo;The crack was becoming.&rdquo;</p>
+        <div class="refrain">Mo, Mo, small and slow. Wait with the egg. And watch it glow.</div>
+      </div>
+      <div class="scene" data-scene>
+        <div class="star" style="top:8%;left:15%"></div>
+        <div class="star" style="top:12%;left:60%"></div>
+        <div class="star" style="top:5%;left:88%"></div>
+        <div class="star" style="top:20%;left:35%"></div>
+        <div class="moss-mound"></div>
+        <div class="lantern-staff"></div>
+        <div class="kole"></div>
+        <div class="moss-nest" style="width:170px;height:56px;bottom:12%;left:30%"></div>
+        <div class="egg" style="bottom:18%;left:36%;width:58px;height:70px">
+          <div class="seam-line" style="left:27px;top:10px;width:3px;height:50px;transform:rotate(4deg);box-shadow:0 0 10px var(--gold);background:var(--gold)"></div>
+        </div>
+        <div class="firefly" style="bottom:26%;left:34%"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="page-5">
+    <div class="page-num">PAGE 5</div>
+    <div class="page-inner">
+      <div class="page-text">
+        <h2>The Becoming</h2>
+        <p>And on the night the valley was quiet, the egg opened &mdash; not with a crack, but with a song.</p>
+        <p>Light filled the whole nest. It knew Mo&rsquo;s name.</p>
+        <p>Mo laughed. &ldquo;You were waiting for ME.&rdquo;</p>
+        <p>The little light glowed. Still, it glowed.</p>
+        <p>And somewhere far away, another egg began to hum&hellip;</p>
+      </div>
+      <div class="scene" data-scene>
+        <div class="star" style="top:8%;left:10%"></div>
+        <div class="star" style="top:5%;left:50%"></div>
+        <div class="star" style="top:10%;left:88%"></div>
+        <div class="star" style="top:16%;left:30%"></div>
+        <div class="star" style="top:18%;left:70%"></div>
+        <div style="position:absolute;top:35%;left:50%;transform:translate(-50%,-50%);width:140px;height:140px;border-radius:50%;background:radial-gradient(circle,var(--gold-seam) 0%,var(--gold) 45%,transparent 72%);opacity:.85"></div>
+        <div class="moss-mound"></div>
+        <div class="moss-nest" style="width:190px;height:64px"></div>
+        <div style="position:absolute;bottom:24%;left:50%;transform:translateX(-50%);width:44px;height:52px;background:radial-gradient(circle,var(--gold) 0%,var(--gold-seam) 60%,var(--gold) 100%);border-radius:50%;box-shadow:0 0 44px var(--gold)"></div>
+        <div class="firefly" style="top:55%;left:25%"></div>
+        <div class="firefly" style="top:50%;left:72%"></div>
+        <div class="firefly" style="top:60%;left:60%"></div>
+        <div style="position:absolute;bottom:8%;right:6%;width:60px;height:20px;background:var(--moss-1);border-radius:999px;opacity:.75"></div>
+        <div style="position:absolute;bottom:12%;right:11%;width:10px;height:14px;background:var(--gold-seam);border-radius:50%;opacity:.9"></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <p class="lane">SOETech Storyteller Lane &middot; The Lantern Keeper &middot; base outline v1 - expanding soon</p>
+    <p class="teaser">Somewhere, another egg was humming...</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var btn = document.createElement('button');
+  btn.textContent = 'Read it aloud';
+  btn.setAttribute('aria-pressed','false');
+  btn.style.cssText = 'position:fixed;bottom:1.25rem;right:1.25rem;background:#ffc247;color:#1a1f3d;border:none;border-radius:999px;padding:.9rem 1.75rem;font-family:Inter,system-ui,sans-serif;font-size:1rem;font-weight:600;cursor:pointer;box-shadow:0 4px 20px rgba(255,194,71,.4);z-index:99';
+  document.body.appendChild(btn);
+
+  var active = false;
+  var timers = [];
+
+  function highlightLines(page){
+    var p = page.querySelectorAll('.page-text p, .page-text .refrain');
+    p.forEach(function(el){ el.classList.remove('reading'); });
+    var i = 0;
+    function next(){
+      if(i >= p.length){ p.forEach(function(el){ el.classList.remove('reading'); }); return; }
+      p[i].classList.add('reading');
+      var dur = 1400 + p[i].textContent.length * 45;
+      timers.push(setTimeout(function(){ i++; next(); }, dur));
+    }
+    next();
+  }
+
+  btn.addEventListener('click', function(){
+    if(active){
+      timers.forEach(clearTimeout); timers = [];
+      document.querySelectorAll('.reading').forEach(function(el){ el.classList.remove('reading'); });
+      active = false; btn.textContent = 'Read it aloud'; btn.setAttribute('aria-pressed','false');
+      return;
+    }
+    active = true; btn.textContent = 'Pause'; btn.setAttribute('aria-pressed','true');
+    var pages = document.querySelectorAll('.page');
+    var pi = 0;
+    function readPage(){
+      if(pi >= pages.length || !active){
+        active = false; btn.textContent = 'Read it aloud'; btn.setAttribute('aria-pressed','false');
+        return;
+      }
+      highlightLines(pages[pi]);
+      var lines = pages[pi].querySelectorAll('.page-text p, .page-text .refrain');
+      var total = 0;
+      lines.forEach(function(el){ total += 1400 + el.textContent.length * 45; });
+      timers.push(setTimeout(function(){ pi++; readPage(); }, total));
+    }
+    readPage();
+  });
+
+  var st = document.createElement('style');
+  st.textContent = '.reading{background:rgba(255,194,71,.18);border-radius:8px;transition:background .4s}';
+  document.head.appendChild(st);
+})();
+</script>
+</body>
+</html>
